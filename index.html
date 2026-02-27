@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>W3C_BATCH — HTML Validator for Sitemaps</title>
+  <meta name="description"
+    content="Validate all pages in your sitemap against the W3C Nu HTML validator. Batch scan, real-time results, unique error filtering, and detailed reports.">
+  <meta name="keywords"
+    content="W3C, HTML validator, sitemap, batch validator, Nu validator, accessibility, web standards">
+  <meta name="author" content="W3C_BATCH">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="W3C_BATCH — HTML Validator for Sitemaps">
+  <meta property="og:description"
+    content="Batch validate all pages in your sitemap against the W3C Nu HTML validator with real-time streaming results.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#050505">
+  <link rel="icon" type="image/svg+xml" href="/w3c.svg">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,400,600,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;400;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+  <div class="noise-bg"></div>
+  <div class="ambient-glow"></div>
+  <div class="ambient-glow-2"></div>
+
+  <header>
+    <div class="brand">
+      <h1 class="brand-title">W3C_BATCH</h1>
+      <div class="brand-subtitle">Hyper_Validator//v2.0</div>
+    </div>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle theme">☀</button>
+  </header>
+
+  <main>
+    <aside class="config-side">
+      <h2 class="section-headline">INITIATE_SCAN</h2>
+
+      <form id="cfg" autocomplete="off">
+        <div class="input-group">
+          <label for="xml">Payload (Sitemap XML)</label>
+          <textarea id="xml" placeholder="<?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>
+<urlset xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;>
+  <url><loc>https://cyber.net/</loc></url>
+</urlset>" required></textarea>
+        </div>
+
+        <div class="input-group" style="margin-top: 20px;">
+          <label for="base">Override Vector [Base URL]</label>
+          <input id="base" type="url" placeholder="https://staging.cyber.net">
+        </div>
+
+        <div class="btn-row">
+          <button id="start-btn" class="btn-prime" type="submit">SCAN_NOW</button>
+          <button id="stop-btn" class="btn-stop" type="button" style="display:none">STOP</button>
+        </div>
+      </form>
+    </aside>
+
+    <section class="results-area" aria-label="Validation results">
+      <div class="sys-bar">
+        <span>System Status: <span class="status-glitch" id="status-line" role="status"
+            aria-live="polite">AWAITING_INPUT</span></span>
+        <span id="metric-counter" aria-label="Progress counter">-- / --</span>
+      </div>
+
+      <div class="viewport" id="viewport">
+        <div class="empty-state" id="empty-state">
+          <svg fill="none" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="square" stroke-linejoin="miter"
+              d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+          </svg>
+          <div style="font-family: 'Clash Display'; font-size: 18px; letter-spacing: 2px; text-transform: uppercase;">
+            AWAITING SITEMAP DATA</div>
+          <div style="font-size: 11px; margin-top: 8px; color: var(--text-muted);">ENTER XML PAYLOAD AND INITIATE
+            SEQUENCE</div>
+        </div>
+
+        <div class="filter-bar" id="filter-bar" style="display: none;">
+          <label class="toggle-wrapper">
+            <input type="checkbox" id="unique-toggle">
+            Filter Unique Exceptions
+          </label>
+        </div>
+
+        <div class="data-flow" id="data-flow"></div>
+
+        <div class="dash-summary" id="dash-summary" style="display:none" aria-label="Summary dashboard">
+          <div class="dash-t">SYSTEM_REPORT_COMPILED</div>
+          <div id="dash-content"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <template id="tpl-target">
+    <div class="fade-in-up st-pending">
+      <div class="target-block">
+        <div class="idx-stamp"></div>
+        <div class="path-data"></div>
+        <div class="meta-status">
+          <span class="badge-sig">QUEUED</span>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="tpl-log-entry">
+    <div class="log-entry">
+      <div class="log-hdr">
+        <span class="log-hdr-t"></span>
+        <span class="log-loc" style="opacity:0.5"></span>
+      </div>
+      <div class="log-msg"></div>
+    </div>
+  </template>
+
+  <script src="/app.js"></script>
+
+</body>
+
+</html>
