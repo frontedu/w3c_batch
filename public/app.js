@@ -307,20 +307,38 @@
     addStatCard(grid, 'PAGES_W_WARNS', s.pagesWithWarnings, 'sc-warn');
     addStatCard(grid, 'CRITICAL_ERRS', s.pagesWithErrors, 'sc-err');
 
-    var totalCard = document.createElement('div');
-    totalCard.className = 'stat-card sc-err';
-    totalCard.style.gridColumn = '1 / -1';
-    totalCard.style.borderColor = 'var(--err)';
-    var totalLbl = document.createElement('span');
-    totalLbl.className = 'stat-lbl';
-    totalLbl.style.color = 'var(--err)';
-    totalLbl.textContent = 'TOTAL_VIOLATIONS (ERRORS)';
-    var totalVal = document.createElement('span');
-    totalVal.className = 'stat-val';
-    totalVal.textContent = s.totalErrors;
-    totalCard.appendChild(totalLbl);
-    totalCard.appendChild(totalVal);
-    grid.appendChild(totalCard);
+    var totalsRow = document.createElement('div');
+    totalsRow.style.cssText = 'grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:10px';
+
+    var totalErrCard = document.createElement('div');
+    totalErrCard.className = 'stat-card sc-err';
+    totalErrCard.style.borderColor = 'var(--err)';
+    var totalErrLbl = document.createElement('span');
+    totalErrLbl.className = 'stat-lbl';
+    totalErrLbl.style.color = 'var(--err)';
+    totalErrLbl.textContent = 'TOTAL ERRORS';
+    var totalErrVal = document.createElement('span');
+    totalErrVal.className = 'stat-val';
+    totalErrVal.textContent = s.totalErrors;
+    totalErrCard.appendChild(totalErrLbl);
+    totalErrCard.appendChild(totalErrVal);
+
+    var totalWarnCard = document.createElement('div');
+    totalWarnCard.className = 'stat-card sc-warn';
+    totalWarnCard.style.borderColor = 'var(--warn)';
+    var totalWarnLbl = document.createElement('span');
+    totalWarnLbl.className = 'stat-lbl';
+    totalWarnLbl.style.color = 'var(--warn)';
+    totalWarnLbl.textContent = 'TOTAL WARNINGS';
+    var totalWarnVal = document.createElement('span');
+    totalWarnVal.className = 'stat-val';
+    totalWarnVal.textContent = s.totalWarnings;
+    totalWarnCard.appendChild(totalWarnLbl);
+    totalWarnCard.appendChild(totalWarnVal);
+
+    totalsRow.appendChild(totalErrCard);
+    totalsRow.appendChild(totalWarnCard);
+    grid.appendChild(totalsRow);
 
     c.appendChild(grid);
 

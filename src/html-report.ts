@@ -12,8 +12,11 @@ function escapeHtml(str: string): string {
 function getStatusBadge(result: PageResult): string {
   if (result.status === 'failed') return '<span class="badge badge-failed">FAILED</span>'
   if (result.status === 'errors') {
-    const count = result.messages.filter((m) => m.type === 'error').length
-    return `<span class="badge badge-error">${count} error${count !== 1 ? 's' : ''}</span>`
+    const errors = result.messages.filter((m) => m.type === 'error').length
+    const warnings = result.messages.filter((m) => m.type === 'warning').length
+    const errBadge = `<span class="badge badge-error">${errors} error${errors !== 1 ? 's' : ''}</span>`
+    const warnBadge = warnings > 0 ? ` <span class="badge badge-warning">${warnings} warn</span>` : ''
+    return errBadge + warnBadge
   }
   if (result.status === 'warnings') {
     const count = result.messages.filter((m) => m.type === 'warning').length
